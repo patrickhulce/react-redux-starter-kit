@@ -19,6 +19,14 @@ export default function createAppStore(initialState = {}, restore) {
       localStorage.setItem('__state__', JSON.stringify(store.getState()))
     }, 500)
 
+    const clearSaved = () => localStorage.setItem('__state__', null)
+    document.addEventListener('keydown', e => {
+      if (e.key === 'R' && (e.metaKey || e.ctrlKey)) {
+        console.log('[redux] clearing saved state')
+        clearSaved()
+      }
+    })
+
     store.subscribe(debouncedSave)
 
     if (module.hot) {
