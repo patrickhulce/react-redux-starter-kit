@@ -16,12 +16,13 @@ const overrides = {
   },
   prod: {
     plugins: [
-      new webpack.optimize.OccurenceOrderPlugin(),
-      new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}),
       new webpack.DefinePlugin({
         __DEV__: 'false',
         __PROD__: 'true',
+        'process.env.NODE_ENV': JSON.stringify('production'), // for react minification
       }),
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}),
     ],
   },
 }
