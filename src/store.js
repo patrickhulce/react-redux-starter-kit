@@ -2,19 +2,17 @@ import debounce from 'lodash/debounce'
 import {applyMiddleware, compose, createStore} from 'redux'
 import thunk from 'redux-thunk'
 
-import history from './history'
 import createRootReducer from './reducers'
-import {updateLocation} from './location'
 
 export default function createAppStore(initialState = {}, restore) {
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   const store = createStore(
     createRootReducer(),
     initialState,
-    applyMiddleware(thunk)
+    composeEnhancers(applyMiddleware(thunk))
   )
 
   store.reducers = {}
-  store.unsubscribeHistory = history.listen(updateLocation(store))
 
   if (__DEV__) {
     const debouncedSave = debounce(() => {

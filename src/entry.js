@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {Router, browserHistory, hashHistory} from 'react-router'
+import {Provider} from 'react-redux'
+import {syncHistoryWithStore} from 'react-router-redux'
 
-import AppContainer from './containers/app'
 import createAppStore from './store'
 
 const store = createAppStore(window.__INITIAL_STATE__)
@@ -9,7 +11,17 @@ const reactRoot = document.getElementById('react-root')
 
 function renderApp() {
   const routes = require('./routes').default(store)
-  ReactDOM.render(<AppContainer store={store} routes={routes} />, reactRoot)
+  const history = __DEV__ ? hashHistory : browserHistory
+  const syncedHistory = syncHistoryWithStore(history, store)
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <div style={{height: '100%'}}>
+        <Router history={syncedHistory} children={routes} />
+      </div>
+    </Provider>,
+    reactRoot
+  )
 }
 
 let render = renderApp

@@ -1,6 +1,6 @@
 import omit from 'lodash/omit'
-import location from './location'
 import {combineReducers} from 'redux'
+import {routerReducer} from 'react-router-redux'
 
 export function addReducers(store, reducers) {
   Object.assign(store.reducers, reducers)
@@ -13,5 +13,5 @@ export function removeReducers(store, keys) {
 }
 
 export default function createRootReducer(reducers) {
-  return combineReducers({location, ...reducers})
+  return combineReducers({routing: routerReducer, ...reducers})
 }

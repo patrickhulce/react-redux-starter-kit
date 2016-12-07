@@ -26,7 +26,6 @@ const overrides = {
   },
 }
 
-console.log('node env', process.env)
 module.exports = Object.assign({
   entry: './src/entry.js',
   output: {
