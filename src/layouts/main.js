@@ -1,6 +1,10 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 
 export default class Main extends React.Component {
+  static propTypes = {
+    children: PropTypes.element.isRequired,
+  }
+
   render() {
     return (
       <div className="container">

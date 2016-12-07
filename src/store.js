@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 
 import createRootReducer from './reducers'
 
-export default function createAppStore(initialState = {}, restore) {
+export default function createAppStore(initialState = {}) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   const store = createStore(
     createRootReducer(),

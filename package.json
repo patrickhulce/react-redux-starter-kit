@@ -34,5 +34,12 @@
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
     "xo": "github:patrickhulce/xo#react"
+  },
+  "xo": {
+    "env": "browser",
+    "globals": [
+      "__DEV__",
+      "__PROD__"
+    ]
   }
 }

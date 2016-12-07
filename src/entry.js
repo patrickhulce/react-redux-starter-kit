@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router, browserHistory, hashHistory} from 'react-router'
@@ -32,8 +33,8 @@ if (__DEV__) {
   render = () => {
     try {
       renderApp()
-    } catch (error) {
-      ReactDOM.render(<RedBox error={error} />, reactRoot)
+    } catch (err) {
+      ReactDOM.render(<RedBox error={err} />, reactRoot)
     }
   }
 

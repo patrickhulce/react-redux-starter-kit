@@ -7,7 +7,7 @@ export function saveContact(payload) {
 
 export default function contact(state = {}, action) {
   if (action.type === 'SAVE_CONTACT') {
-    return payload
+    return action.payload
   } else {
     return state
   }

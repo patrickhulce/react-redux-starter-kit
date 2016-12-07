@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 
 class Contact extends React.Component {
+  static propTypes = {
+    children: PropTypes.element,
+  }
+
   render() {
     return (
       <div className="container">
