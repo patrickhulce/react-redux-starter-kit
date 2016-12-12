@@ -1,11 +1,10 @@
 import React, {PropTypes} from 'react'
 import {Link} from 'react-router'
 
-export default class Home extends React.Component {
-  static propTypes = {
+export default React.createClass({
+  propTypes: {
     children: PropTypes.element,
-  }
-
+  },
   render() {
     return (
       <div className="container">
@@ -14,5 +13,5 @@ export default class Home extends React.Component {
         {this.props.children}
       </div>
     )
-  }
-}
+  },
+})

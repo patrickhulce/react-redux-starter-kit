@@ -1,11 +1,10 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 
-class Contact extends React.Component {
-  static propTypes = {
+const Contact = React.createClass({
+  propTypes: {
     children: PropTypes.element,
-  }
-
+  },
   render() {
     return (
       <div className="container">
@@ -13,7 +12,7 @@ class Contact extends React.Component {
         {this.props.children}
       </div>
     )
-  }
-}
+  },
+})
 
 export default connect(state => state, {})(Contact)
