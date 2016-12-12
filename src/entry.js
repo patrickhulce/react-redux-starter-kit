@@ -1,28 +1,19 @@
-/* eslint-disable react/no-children-prop */
+/* eslint-disable import/no-unassigned-import */
 import './styles/app.less'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Router, browserHistory, hashHistory} from 'react-router'
-import {Provider} from 'react-redux'
-import {syncHistoryWithStore} from 'react-router-redux'
 
-import createAppStore from './state/store'
+import App from './containers/app'
+import initialRoutes from './routes'
+import createStoreAndHistory from './state/store'
 
-const store = createAppStore(window.__INITIAL_STATE__)
 const reactRoot = document.getElementById('react-root')
+const {store, history} = createStoreAndHistory(window.__INITIAL_STATE__)
 
-function renderApp() {
-  const routes = require('./routes').default(store)
-  const history = __DEV__ ? hashHistory : browserHistory
-  const syncedHistory = syncHistoryWithStore(history, store)
-
+function renderApp(routes) {
   ReactDOM.render(
-    <Provider store={store}>
-      <div style={{height: '100%'}}>
-        <Router history={syncedHistory} children={routes} />
-      </div>
-    </Provider>,
+    <App store={store} routes={routes} history={history} />,
     reactRoot
   )
 }
@@ -32,9 +23,9 @@ let render = renderApp
 if (__DEV__) {
   const RedBox = require('redbox-react').default
 
-  render = () => {
+  render = routes => {
     try {
-      renderApp()
+      renderApp(routes)
     } catch (err) {
       ReactDOM.render(<RedBox error={err} />, reactRoot)
     }
@@ -44,10 +35,10 @@ if (__DEV__) {
     module.hot.accept('./routes', () => {
       setImmediate(() => {
         ReactDOM.unmountComponentAtNode(reactRoot)
-        render()
+        render(require('./routes').default(store))
       })
     })
   }
 }
 
-render()
+render(initialRoutes)

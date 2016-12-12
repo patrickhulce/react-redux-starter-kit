@@ -1,10 +1,12 @@
 import debounce from 'lodash/debounce'
 import {applyMiddleware, compose, createStore} from 'redux'
 import thunk from 'redux-thunk'
+import {browserHistory, hashHistory} from 'react-router'
+import {syncHistoryWithStore} from 'react-router-redux'
 
 import createRootReducer from './reducers'
 
-export default function createAppStore(initialState = {}) {
+export default function createStoreAndHistory(initialState = {}) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   const store = createStore(
     createRootReducer(),
@@ -37,5 +39,8 @@ export default function createAppStore(initialState = {}) {
     }
   }
 
-  return store
+  const history = __DEV__ ? hashHistory : browserHistory
+  const syncedHistory = syncHistoryWithStore(history, store)
+
+  return {store, history: syncedHistory}
 }
