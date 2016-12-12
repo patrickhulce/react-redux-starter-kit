@@ -1,4 +1,6 @@
 /* eslint-disable react/no-children-prop */
+import './styles/app.less'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router, browserHistory, hashHistory} from 'react-router'
