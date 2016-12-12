@@ -5,7 +5,7 @@ import {Router, browserHistory, hashHistory} from 'react-router'
 import {Provider} from 'react-redux'
 import {syncHistoryWithStore} from 'react-router-redux'
 
-import createAppStore from './store'
+import createAppStore from './state/store'
 
 const store = createAppStore(window.__INITIAL_STATE__)
 const reactRoot = document.getElementById('react-root')

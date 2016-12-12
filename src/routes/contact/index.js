@@ -1,4 +1,4 @@
-import {addReducers} from 'src/reducers'
+import {addReducers} from 'src/state/reducers'
 
 export default function (store) {
   return {
