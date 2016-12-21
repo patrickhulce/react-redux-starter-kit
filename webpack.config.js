@@ -28,10 +28,13 @@ const overrides = {
 }
 
 module.exports = Object.assign({
-  entry: './src/entry.js',
+  entry: {
+    app: './src/entry.js',
+    sw: './src/sw/entry.js',
+  },
   output: {
     path: `${__dirname}/dist`,
-    filename: 'app.js',
+    filename: '[name].js',
     publicPath: process.env.WEBPACK_PUBLIC_PATH || '/',
   },
   resolve: {

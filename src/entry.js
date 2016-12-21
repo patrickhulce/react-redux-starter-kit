@@ -1,4 +1,5 @@
 /* eslint-disable import/no-unassigned-import */
+import './sw/register'
 import './styles/app.less'
 
 import React from 'react'
