@@ -8,7 +8,8 @@
   },
   "scripts": {
     "lint": "xo --fix",
-    "start": "webpack-dev-server --hot --inline",
+    "electron": "NODE_ENV=dev electron -r babel-register ./src/process/entry.js",
+    "start": "WEBPACK_PUBLIC_PATH='http://localhost:8080/' webpack-dev-server --hot --inline",
     "test": "xo && jest"
   },
   "author": "",
@@ -30,7 +31,13 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0",
     "css-loader": "^0.26.1",
+    "devtron": "^1.4.0",
+    "electron": "^1.4.12",
+    "electron-builder": "^10.7.0",
+    "electron-debug": "^1.1.0",
+    "electron-devtools-installer": "^2.0.1",
     "jest": "^17.0.3",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
