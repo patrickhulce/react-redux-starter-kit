@@ -52,7 +52,10 @@
     }
   },
   "xo": {
-    "env": ["browser", "jest"],
+    "env": [
+      "browser",
+      "jest"
+    ],
     "globals": [
       "__DEV__",
       "__PROD__"

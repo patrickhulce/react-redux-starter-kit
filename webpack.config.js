@@ -32,7 +32,7 @@ module.exports = Object.assign({
   output: {
     path: `${__dirname}/dist`,
     filename: 'app.js',
-    publicPath: process.env.WEBPACK_PUBLIC_PATH || '/assets/',
+    publicPath: process.env.WEBPACK_PUBLIC_PATH || '/',
   },
   resolve: {
     root: [__dirname],
