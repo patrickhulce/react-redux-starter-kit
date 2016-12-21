@@ -30,7 +30,6 @@ const overrides = {
 module.exports = Object.assign({
   entry: {
     app: './src/entry.js',
-    sw: './src/sw/entry.js',
   },
   output: {
     path: `${__dirname}/dist`,
