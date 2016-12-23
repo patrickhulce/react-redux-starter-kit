@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "xo --fix",
-    "start": "webpack-dev-server --hot --inline",
+    "start": "webpack-dev-server --content-base build/ --hot --inline",
     "test": "xo && jest"
   },
   "author": "",
@@ -31,6 +31,8 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.26.1",
+    "html-webpack-inline-source-plugin": "0.0.6",
+    "html-webpack-plugin": "^2.24.1",
     "jest": "^17.0.3",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",

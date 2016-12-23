@@ -1,21 +1,31 @@
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 
 function url(mime, limit = 10000) {
   return `url?limit=${limit}&mimetype=${mime}`
 }
 
+const plugins = [
+  new HtmlWebpackPlugin({
+    template: `${__dirname}/src/index.html`,
+    inlineSource: 'inline.js$',
+  }),
+  new HtmlWebpackInlineSourcePlugin(),
+]
+
 const overrides = {
   dev: {
     devtool: 'cheap-module-eval-source-map',
-    plugins: [
+    plugins: plugins.concat([
       new webpack.DefinePlugin({
         __DEV__: 'true',
         __PROD__: 'false',
       }),
-    ],
+    ]),
   },
   prod: {
-    plugins: [
+    plugins: plugins.concat([
       new webpack.DefinePlugin({
         __DEV__: 'false',
         __PROD__: 'true',
@@ -23,7 +33,7 @@ const overrides = {
       }),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}),
-    ],
+    ]),
   },
 }
 
