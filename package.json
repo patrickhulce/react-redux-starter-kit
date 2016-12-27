@@ -8,7 +8,9 @@
   },
   "scripts": {
     "lint": "xo --fix",
-    "start": "webpack-dev-server --content-base build/ --hot --inline",
+    "start:hot": "HOT=1 webpack-dev-server --content-base build/ --hot --inline",
+    "start:cold": "webpack-dev-server --content-base build/",
+    "start": "npm run start:hot",
     "test": "xo && jest"
   },
   "author": "",
