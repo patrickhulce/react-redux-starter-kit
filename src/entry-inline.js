@@ -61,7 +61,7 @@ module.exports = function bind(options = {}) {
   const loaderColor = options.loaderColor || '#333'
   const backgroundColor = options.backgroundColor || '#fff'
   const bodyLoadingClass = options.bodyLoadingClass || 'bundle-loading'
-  const loaderContainerId = options.loaderContainerId || '#bundle-preloader'
+  const loaderContainerId = options.loaderContainerId || 'bundle-preloader'
 
   injectRules(injectStylesheet(bodyLoadingClass), {
     [`body.${bodyLoadingClass}`]: {
@@ -72,7 +72,6 @@ module.exports = function bind(options = {}) {
     }
   })
 
-  debugger;
   document.body.classList.addClass(bodyLoadingClass)
   const loaderContainer = document.getElementById(loaderContainerId)
   loaderContainer.innerHTML = `
