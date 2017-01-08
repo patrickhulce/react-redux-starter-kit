@@ -1,6 +1,10 @@
-function injectStylesheet(bodyLoadingClass) {
+function injectStylesheet(bodyLoadingClass, backgroundColor, loaderColor) {
   const style = document.createElement('style')
   style.appendChild(document.createTextNode(`
+    body.${bodyLoadingClass} {
+      background-color: ${backgroundColor};
+    }
+
     .${bodyLoadingClass} .preload-spinner {
       margin: 100px auto 0;
       width: 70px;
@@ -11,6 +15,7 @@ function injectStylesheet(bodyLoadingClass) {
       width: 18px;
       height: 18px;
 
+      background-color: ${loaderColor};
       border-radius: 100%;
       display: inline-block;
       -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
@@ -46,33 +51,15 @@ function injectStylesheet(bodyLoadingClass) {
   return style.sheet
 }
 
-function injectRules(sheet, rules) {
-  for (const selector in rules) {
-    const propKeys = Object.keys(rules[selector])
-    const properties = propKeys
-      .map(prop => `${prop}: ${rules[selector][prop]}`)
-      .join('; ')
-
-    sheet.insertRule(`${selector} { ${properties} }`, -1)
-  }
-}
-
-module.exports = function bind(options = {}) {
+module.exports = (function bind(options = {}) {
   const loaderColor = options.loaderColor || '#333'
   const backgroundColor = options.backgroundColor || '#fff'
   const bodyLoadingClass = options.bodyLoadingClass || 'bundle-loading'
   const loaderContainerId = options.loaderContainerId || 'bundle-preloader'
 
-  injectRules(injectStylesheet(bodyLoadingClass), {
-    [`body.${bodyLoadingClass}`]: {
-      'background-color': backgroundColor,
-    },
-    '.spinner > div': {
-      'background-color': loaderColor,
-    }
-  })
+  document.body.classList.add(bodyLoadingClass)
+  injectStylesheet(bodyLoadingClass, backgroundColor, loaderColor)
 
-  document.body.classList.addClass(bodyLoadingClass)
   const loaderContainer = document.getElementById(loaderContainerId)
   loaderContainer.innerHTML = `
     <div class="preload-spinner">
@@ -81,4 +68,4 @@ module.exports = function bind(options = {}) {
       <div class="bounce3"></div>
     </div>
   `
-}
+})()

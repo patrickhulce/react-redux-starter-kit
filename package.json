@@ -2,18 +2,21 @@
   "name": "react-samples",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/entry.js",
   "engines": {
     "node": ">=6.0.0"
   },
   "scripts": {
+    "build": "npm run build:prod",
+    "build:dev": "webpack",
+    "build:prod": "NODE_ENV=prod webpack",
     "lint": "xo --fix",
-    "start:hot": "HOT=1 webpack-dev-server --content-base build/ --hot --inline",
     "start:cold": "webpack-dev-server --content-base build/",
+    "start:hot": "HOT=1 webpack-dev-server --content-base build/ --hot --inline",
     "start": "npm run start:hot",
     "test": "xo && jest"
   },
-  "author": "",
+  "author": "Patrick Hulce <patrick.hulce@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.2",
@@ -34,7 +37,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.26.1",
     "html-webpack-inline-source-plugin": "0.0.6",
-    "html-webpack-plugin": "^2.24.1",
+    "html-webpack-plugin": "^2.26.0",
     "jest": "^17.0.3",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",

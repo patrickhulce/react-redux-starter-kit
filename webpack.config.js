@@ -32,7 +32,7 @@ const overrides = {
       new webpack.DefinePlugin({
         __DEV__: 'false',
         __PROD__: 'true',
-        __HOT__: JSON.stringify(__HOT__),
+        __HOT__: 'false',
         'process.env.NODE_ENV': JSON.stringify('production'), // for react minification
       }),
       new webpack.optimize.OccurenceOrderPlugin(),
