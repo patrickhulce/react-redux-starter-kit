@@ -2,17 +2,22 @@
   "name": "react-samples",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/entry.js",
   "engines": {
     "node": ">=6.0.0"
   },
   "scripts": {
+    "build": "npm run build:prod",
+    "build:dev": "webpack",
+    "build:prod": "NODE_ENV=prod webpack",
     "lint": "xo --fix",
     "electron": "NODE_ENV=dev electron -r babel-register ./src/process/entry.js",
-    "start": "WEBPACK_PUBLIC_PATH='http://localhost:8080/' webpack-dev-server --hot --inline",
+    "start:cold": "webpack-dev-server --content-base build/",
+    "start:hot": "HOT=1 webpack-dev-server --content-base build/ --hot --inline",
+    "start": "npm run start:hot",
     "test": "xo && jest"
   },
-  "author": "",
+  "author": "Patrick Hulce <patrick.hulce@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.2",
@@ -38,6 +43,8 @@
     "electron-builder": "^10.7.0",
     "electron-debug": "^1.1.0",
     "electron-devtools-installer": "^2.0.1",
+    "html-webpack-inline-source-plugin": "0.0.6",
+    "html-webpack-plugin": "^2.26.0",
     "jest": "^17.0.3",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",

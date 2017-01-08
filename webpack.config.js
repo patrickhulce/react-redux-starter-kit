@@ -1,34 +1,50 @@
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
+
+const __HOT__ = Boolean(process.env.HOT)
 
 function url(mime, limit = 10000) {
   return `url?limit=${limit}&mimetype=${mime}`
 }
 
+const plugins = [
+  new HtmlWebpackPlugin({
+    chunks: ['app', 'inline'],
+    template: `${__dirname}/src/index.html`,
+    inlineSource: 'inline\.(js|css)$',
+  }),
+]
+
 const overrides = {
   dev: {
     devtool: 'cheap-module-eval-source-map',
-    plugins: [
+    plugins: plugins.concat([
       new webpack.DefinePlugin({
         __DEV__: 'true',
         __PROD__: 'false',
+        __HOT__: JSON.stringify(__HOT__),
       }),
-    ],
+    ]),
   },
   prod: {
-    plugins: [
+    plugins: plugins.concat([
       new webpack.DefinePlugin({
         __DEV__: 'false',
         __PROD__: 'true',
+        __HOT__: 'false',
         'process.env.NODE_ENV': JSON.stringify('production'), // for react minification
       }),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}),
-    ],
+      new HtmlWebpackInlineSourcePlugin(),
+    ]),
   },
 }
 
 module.exports = Object.assign({
   entry: {
+    inline: './src/entry-inline.js',
     app: './src/entry.js',
   },
   output: {
