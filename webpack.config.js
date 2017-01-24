@@ -4,8 +4,13 @@ const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin
 
 const __HOT__ = Boolean(process.env.HOT)
 
-function url(mime, limit = 10000) {
-  return `url?limit=${limit}&mimetype=${mime}`
+function url(mimetype, limit = 10000) {
+  return [
+    {
+      loader: 'url-loader',
+      options: {limit, mimetype}
+    }
+  ]
 }
 
 const plugins = [
@@ -35,8 +40,7 @@ const overrides = {
         __HOT__: 'false',
         'process.env.NODE_ENV': JSON.stringify('production'), // for react minification
       }),
-      new webpack.optimize.OccurenceOrderPlugin(),
-      new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}),
+      new webpack.optimize.UglifyJsPlugin(),
       new HtmlWebpackInlineSourcePlugin(),
     ]),
   },
@@ -54,21 +58,21 @@ module.exports = Object.assign({
     publicPath: process.env.WEBPACK_PUBLIC_PATH || '/',
   },
   resolve: {
-    root: [__dirname],
+    modules: [__dirname, 'node_modules'],
   },
   module: {
-    loaders: [
-      {test: /\.woff(2)?(\?v=.+)?$/, loader: url('application/font-woff')},
-      {test: /\.ttf(\?v=.+)?$/, loader: url('application/octet-stream')},
-      {test: /\.svg(\?v=.+)?$/, loader: url('image/svg+xml')},
-      {test: /\.eot(\?v=.+)?$/, loader: 'file'},
+    rules: [
+      {test: /\.woff(2)?(\?v=.+)?$/, use: url('application/font-woff')},
+      {test: /\.ttf(\?v=.+)?$/, use: url('application/octet-stream')},
+      {test: /\.svg(\?v=.+)?$/, use: url('image/svg+xml')},
+      {test: /\.eot(\?v=.+)?$/, use: ['file-loader']},
 
-      {test: /\.png$/, loader: url('image/png')},
-      {test: /\.gif$/, loader: url('image/gif')},
+      {test: /\.png$/, use: url('image/png')},
+      {test: /\.gif$/, use: url('image/gif')},
 
-      {test: /\.js$/, loaders: ['babel'], include: `${__dirname}/src`},
-      {test: /\.less$/, loader: 'style!css!less', include: __dirname},
-      {test: /\.css$/, loader: 'style!css'},
+      {test: /\.js$/, use: ['babel-loader'], include: `${__dirname}/src`},
+      {test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'], include: __dirname},
+      {test: /\.css$/, use: ['style-loader', 'css-loader']},
     ],
   },
 }, overrides[process.env.NODE_ENV || 'dev'])

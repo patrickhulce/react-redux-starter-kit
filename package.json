@@ -19,7 +19,7 @@
   "author": "Patrick Hulce <patrick.hulce@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "loading-page": "1.0.1",
+    "loading-page": "^1.0.1",
     "lodash": "^4.17.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
@@ -46,8 +46,8 @@
     "react-test-renderer": "^15.4.1",
     "redbox-react": "^1.3.3",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0",
     "xo": "github:patrickhulce/xo#react"
   },
   "jest": {
