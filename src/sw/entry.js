@@ -5,7 +5,6 @@ self.addEventListener('install', function (e) {
     return cache.addAll([
       'index.html',
       'app.js',
-      'sw.js',
     ])
   }))
 })
