@@ -1,8 +1,13 @@
+const glob = require('glob')
+const path = require('path')
 const webpack = require('webpack')
+const PurifyPlugin = require('purifycss-webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 
 const __HOT__ = Boolean(process.env.HOT)
+const __PROD__ = process.env.NODE_ENV === 'prod'
 
 function url(mimetype, limit = 10000) {
   return [
@@ -11,6 +16,14 @@ function url(mimetype, limit = 10000) {
       options: {limit, mimetype}
     }
   ]
+}
+
+let cssLoader = ['style-loader', 'css-loader']
+let lessLoader = cssLoader.concat('less-loader')
+
+if (__PROD__) {
+  cssLoader = ExtractTextPlugin.extract({use: 'css-loader'})
+  lessLoader = ExtractTextPlugin.extract({use: ['css-loader', 'less-loader']})
 }
 
 const plugins = [
@@ -39,6 +52,10 @@ const overrides = {
         __PROD__: 'true',
         __HOT__: 'false',
         'process.env.NODE_ENV': JSON.stringify('production'), // for react minification
+      }),
+      new ExtractTextPlugin('app.css'),
+      new PurifyPlugin({
+        paths: glob.sync(path.join(__dirname, 'src/**/*.@(js|html)'))
       }),
       new webpack.optimize.UglifyJsPlugin(),
       new HtmlWebpackInlineSourcePlugin(),
@@ -71,8 +88,8 @@ module.exports = Object.assign({
       {test: /\.gif$/, use: url('image/gif')},
 
       {test: /\.js$/, use: ['babel-loader'], include: `${__dirname}/src`},
-      {test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'], include: __dirname},
-      {test: /\.css$/, use: ['style-loader', 'css-loader']},
+      {test: /\.less$/, use: lessLoader, include: __dirname},
+      {test: /\.css$/, use: cssLoader, include: __dirname},
     ],
   },
 }, overrides[process.env.NODE_ENV || 'dev'])
