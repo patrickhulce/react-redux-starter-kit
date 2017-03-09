@@ -1,7 +1,4 @@
-const path = require('path')
-const glob = require('glob')
 const webpack = require('webpack')
-const PurifyPlugin = require('purifycss-webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
@@ -18,12 +15,12 @@ function url(mimetype, limit = 10000) {
   ]
 }
 
-let cssLoader = ['style-loader', 'css-loader']
-let lessLoader = cssLoader.concat('less-loader')
+let cssLoader = ['style-loader', {loader: 'css-loader', options: {sourceMap: true}}]
+let lessLoader = cssLoader.concat({loader: 'less-loader', options: {sourceMap: true}})
 
 if (__PROD__) {
-  cssLoader = ExtractTextPlugin.extract({use: 'css-loader'})
-  lessLoader = ExtractTextPlugin.extract({use: ['css-loader', 'less-loader']})
+  cssLoader = ExtractTextPlugin.extract({fallback: 'style-loader', use: cssLoader[1]})
+  lessLoader = ExtractTextPlugin.extract({fallback: 'style-loader', use: lessLoader.slice(1)})
 }
 
 const plugins = [
@@ -46,6 +43,7 @@ const overrides = {
     ]),
   },
   prod: {
+    devtool: 'source-map',
     plugins: plugins.concat([
       new webpack.DefinePlugin({
         __DEV__: 'false',
@@ -54,10 +52,7 @@ const overrides = {
         'process.env.NODE_ENV': JSON.stringify('production'), // for react minification
       }),
       new ExtractTextPlugin('app.css'),
-      new PurifyPlugin({
-        paths: glob.sync(path.join(__dirname, 'src/**/*.@(js|html)')),
-      }),
-      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
       new HtmlWebpackInlineSourcePlugin(),
     ]),
   },
