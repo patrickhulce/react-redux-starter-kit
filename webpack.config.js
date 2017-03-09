@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const NukecssPlugin = require('nukecss-webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
@@ -52,6 +53,7 @@ const overrides = {
         'process.env.NODE_ENV': JSON.stringify('production'), // for react minification
       }),
       new ExtractTextPlugin('app.css'),
+      new NukecssPlugin({sources: [`file://${__dirname}/src/**.html`]}),
       new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
       new HtmlWebpackInlineSourcePlugin(),
     ]),
