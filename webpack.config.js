@@ -53,7 +53,10 @@ const overrides = {
         'process.env.NODE_ENV': JSON.stringify('production'), // for react minification
       }),
       new ExtractTextPlugin('app.css'),
-      new NukecssPlugin({sources: [`file://${__dirname}/src/**.html`]}),
+      new NukecssPlugin({
+        sourceMap: true,
+        sources: [`file://${__dirname}/src/**.html`]
+      }),
       new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
       new HtmlWebpackInlineSourcePlugin(),
     ]),
