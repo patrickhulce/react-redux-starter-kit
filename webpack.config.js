@@ -1,5 +1,5 @@
-const glob = require('glob')
 const path = require('path')
+const glob = require('glob')
 const webpack = require('webpack')
 const PurifyPlugin = require('purifycss-webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -30,7 +30,7 @@ const plugins = [
   new HtmlWebpackPlugin({
     chunks: ['app', 'inline'],
     template: `${__dirname}/src/index.html`,
-    inlineSource: 'inline\.(js|css)$',
+    inlineSource: 'inline.(js|css)$',
   }),
 ]
 
