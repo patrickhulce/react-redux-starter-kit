@@ -13,8 +13,8 @@ function url(mimetype, limit = 10000) {
   return [
     {
       loader: 'url-loader',
-      options: {limit, mimetype}
-    }
+      options: {limit, mimetype},
+    },
   ]
 }
 
@@ -55,7 +55,7 @@ const overrides = {
       }),
       new ExtractTextPlugin('app.css'),
       new PurifyPlugin({
-        paths: glob.sync(path.join(__dirname, 'src/**/*.@(js|html)'))
+        paths: glob.sync(path.join(__dirname, 'src/**/*.@(js|html)')),
       }),
       new webpack.optimize.UglifyJsPlugin(),
       new HtmlWebpackInlineSourcePlugin(),
