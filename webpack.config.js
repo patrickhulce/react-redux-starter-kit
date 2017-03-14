@@ -55,7 +55,7 @@ const overrides = {
       new ExtractTextPlugin('app.css'),
       new NukecssPlugin({
         sourceMap: true,
-        sources: [`file://${__dirname}/src/**.html`]
+        sources: [`file://${__dirname}/src/**.html`],
       }),
       new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
       new HtmlWebpackInlineSourcePlugin(),
