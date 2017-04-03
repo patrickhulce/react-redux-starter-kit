@@ -1,6 +1,8 @@
-var VERSION = '1'
+/* eslint-env serviceworker */
 
-self.addEventListener('install', function (e) {
+const VERSION = '1'
+
+self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(cache => {
     return cache.addAll([
       'index.html',
@@ -9,8 +11,8 @@ self.addEventListener('install', function (e) {
   }))
 })
 
-self.addEventListener('fetch', function (e) {
-  var tryInCachesFirst = caches.open(VERSION).then(cache => {
+self.addEventListener('fetch', e => {
+  const tryInCachesFirst = caches.open(VERSION).then(cache => {
     return cache.match(e.request).then(response => {
       return response || handleNoCacheMatch(e)
     })
@@ -18,9 +20,9 @@ self.addEventListener('fetch', function (e) {
   e.respondWith(tryInCachesFirst)
 })
 
-self.addEventListener('activate', function (e) {
+self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(keys => {
-    var invalidKeys = keys.filter(key => key !== VERSION)
+    const invalidKeys = keys.filter(key => key !== VERSION)
     return Promise.all(invalidKeys.map(key => caches.delete(key)))
   }))
 })

@@ -8,7 +8,7 @@ describe('routes/home/container.js', () => {
     const mockChild = <div className="child" />
     const component = renderer.create(<Home>{mockChild}</Home>)
 
-    let tree = component.toJSON()
+    const tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

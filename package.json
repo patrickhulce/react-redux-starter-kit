@@ -10,11 +10,11 @@
     "build": "npm run build:prod",
     "build:dev": "webpack",
     "build:prod": "NODE_ENV=prod webpack",
-    "lint": "xo --fix",
+    "lint": "lint -t react --fix",
     "start:cold": "webpack-dev-server --content-base build/",
     "start:hot": "HOT=1 webpack-dev-server --content-base build/ --hot --inline",
     "start": "npm run start:hot",
-    "test": "xo && jest"
+    "test": "lint -t react && jest"
   },
   "author": "Patrick Hulce <patrick.hulce@gmail.com>",
   "license": "MIT",
@@ -31,6 +31,7 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
+    "@patritech/lint": "^1.2.2",
     "babel-core": "^6.18.2",
     "babel-jest": "^17.0.2",
     "babel-loader": "^6.2.8",
@@ -51,9 +52,8 @@
     "redbox-react": "^1.3.3",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0",
-    "xo": "github:patrickhulce/xo#react"
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.2.0"
   },
   "jest": {
     "moduleDirectories": [
@@ -64,11 +64,7 @@
       "\\.(css|less|gif|ttf|eot|svg|woff)$": "<rootDir>/__mocks__/file-mock.js"
     }
   },
-  "xo": {
-    "env": [
-      "browser",
-      "jest"
-    ],
+  "eslint": {
     "globals": [
       "__DEV__",
       "__PROD__",
