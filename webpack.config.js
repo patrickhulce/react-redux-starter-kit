@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const NukecssPlugin = require('nukecss-webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 
 const __HOT__ = Boolean(process.env.HOT)
 const __PROD__ = process.env.NODE_ENV === 'prod'
@@ -28,7 +28,6 @@ const plugins = [
   new HtmlWebpackPlugin({
     chunks: ['app', 'inline'],
     template: `${__dirname}/src/index.html`,
-    inlineSource: 'inline.(js|css)$',
   }),
 ]
 
@@ -58,7 +57,10 @@ const overrides = {
         sources: [`file://${__dirname}/src/**.html`],
       }),
       new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
-      new HtmlWebpackInlineSourcePlugin(),
+      new ScriptExtHtmlWebpackPlugin({
+        inline: /inline\.js$/,
+        defaultAttribute: 'async',
+      })
     ]),
   },
 }
