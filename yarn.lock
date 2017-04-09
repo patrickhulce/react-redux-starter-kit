@@ -2488,10 +2488,11 @@ fonteditor-core@^0.0.21:
   dependencies:
     xmldom "~0.1.19"
 
-fontmin-webpack@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/fontmin-webpack/-/fontmin-webpack-1.0.1.tgz#fe7600cfb8be5648691c3b2bd922620cfd64bc7a"
+fontmin-webpack@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/fontmin-webpack/-/fontmin-webpack-1.0.2.tgz#12038970488267fd076218264cd756c984646ae2"
   dependencies:
+    debug "^2.6.3"
     fontmin "^0.9.6"
     lodash "^4.17.4"
     ttf2woff2 "^2.0.3"
@@ -4040,11 +4041,11 @@ minimist@0.0.8, minimist@~0.0.1:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
 
-minimist@1.1.x, minimist@^1.1.1, minimist@^1.1.3:
+minimist@1.1.x, minimist@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.1.3.tgz#3bedfd91a92d39016fcfaa1c681e8faa1a1efda8"
 
-minimist@^1.2.0:
+minimist@^1.1.3, minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
