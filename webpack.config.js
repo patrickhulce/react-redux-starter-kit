@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const NukecssPlugin = require('nukecss-webpack')
+const FontminPlugin = require('fontmin-webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
@@ -56,6 +57,7 @@ const overrides = {
         sourceMap: true,
         sources: [`file://${__dirname}/src/**.html`],
       }),
+      new FontminPlugin(),
       new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
       new ScriptExtHtmlWebpackPlugin({
         inline: /inline\.js$/,
@@ -81,13 +83,14 @@ module.exports = Object.assign({
   },
   module: {
     rules: [
-      {test: /\.woff(2)?(\?v=.+)?$/, use: url('application/font-woff')},
-      {test: /\.ttf(\?v=.+)?$/, use: url('application/octet-stream')},
-      {test: /\.svg(\?v=.+)?$/, use: url('image/svg+xml')},
+      {test: /\.woff(2)?(\?v=.+)?$/, use: ['file-loader']},
+      {test: /\.ttf(\?v=.+)?$/, use: ['file-loader']},
+      {test: /\.svg(\?v=.+)?$/, use: ['file-loader']},
       {test: /\.eot(\?v=.+)?$/, use: ['file-loader']},
 
       {test: /\.png$/, use: url('image/png')},
       {test: /\.gif$/, use: url('image/gif')},
+      {test: /\.jp(e)?g$/, use: url('image/jpeg')},
 
       {test: /\.js$/, use: ['babel-loader'], include: `${__dirname}/src`},
       {test: /\.less$/, use: lessLoader, include: __dirname},
