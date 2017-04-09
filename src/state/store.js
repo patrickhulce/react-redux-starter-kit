@@ -24,7 +24,7 @@ export default function createStoreAndHistory(initialState = {}) {
     const clearSaved = () => localStorage.setItem('__state__', null)
     document.addEventListener('keydown', e => {
       if (e.key === 'R' && (e.metaKey || e.ctrlKey)) {
-        console.log('[redux] clearing saved state')
+        console.log('[redux] clearing saved state') // eslint-disable-line no-console
         clearSaved()
       }
     })

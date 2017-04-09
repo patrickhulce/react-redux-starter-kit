@@ -1,71 +1,7 @@
-function injectStylesheet(bodyLoadingClass, backgroundColor, loaderColor) {
-  const style = document.createElement('style')
-  style.appendChild(document.createTextNode(`
-    body.${bodyLoadingClass} {
-      background-color: ${backgroundColor};
-    }
+import loader from 'loading-page/three-bars'
 
-    .${bodyLoadingClass} .preload-spinner {
-      margin: 100px auto 0;
-      width: 70px;
-      text-align: center;
-    }
-
-    .${bodyLoadingClass} .preload-spinner > div {
-      width: 18px;
-      height: 18px;
-
-      background-color: ${loaderColor};
-      border-radius: 100%;
-      display: inline-block;
-      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-    }
-
-    .${bodyLoadingClass} .preload-spinner .bounce1 {
-      -webkit-animation-delay: -0.32s;
-      animation-delay: -0.32s;
-    }
-
-    .${bodyLoadingClass} .preload-spinner .bounce2 {
-      -webkit-animation-delay: -0.16s;
-      animation-delay: -0.16s;
-    }
-
-    @-webkit-keyframes sk-bouncedelay {
-      0%, 80%, 100% { -webkit-transform: scale(0) }
-      40% { -webkit-transform: scale(1.0) }
-    }
-
-    @keyframes sk-bouncedelay {
-      0%, 80%, 100% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-      } 40% {
-        -webkit-transform: scale(1.0);
-        transform: scale(1.0);
-      }
-    }
-  `))
-  document.head.appendChild(style)
-  return style.sheet
-}
-
-module.exports = (function bind(options = {}) {
-  const loaderColor = options.loaderColor || '#333'
-  const backgroundColor = options.backgroundColor || '#fff'
-  const bodyLoadingClass = options.bodyLoadingClass || 'bundle-loading'
-  const loaderContainerId = options.loaderContainerId || 'bundle-preloader'
-
-  document.body.classList.add(bodyLoadingClass)
-  injectStylesheet(bodyLoadingClass, backgroundColor, loaderColor)
-
-  const loaderContainer = document.getElementById(loaderContainerId)
-  loaderContainer.innerHTML = `
-    <div class="preload-spinner">
-      <div class="bounce1"></div>
-      <div class="bounce2"></div>
-      <div class="bounce3"></div>
-    </div>
-  `
-})()
+export default loader({
+  prefix: 'preloader',
+  fullSizeBody: true,
+  loaderContainerId: 'bundle-preloader',
+})

@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom'
 import App from './containers/app'
 import createStoreAndHistory from './state/store'
 
+document.body.classList.add('loaded')
 const reactRoot = document.getElementById('react-root')
 const {store, history} = createStoreAndHistory(window.__INITIAL_STATE__)
 
