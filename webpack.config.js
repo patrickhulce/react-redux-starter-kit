@@ -62,7 +62,7 @@ const overrides = {
       new ScriptExtHtmlWebpackPlugin({
         inline: /inline\.js$/,
         defaultAttribute: 'async',
-      })
+      }),
     ]),
   },
 }

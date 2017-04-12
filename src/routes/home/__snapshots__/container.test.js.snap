@@ -2,7 +2,9 @@ exports[`routes/home/container.js should render 1`] = `
 <div
   className="container">
   <h1>
-    Home
+    <i
+      className="fa fa-home" />
+     Home
   </h1>
   <a
     onClick={[Function]}

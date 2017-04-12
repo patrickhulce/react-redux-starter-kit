@@ -8,7 +8,7 @@ export default React.createClass({
   render() {
     return (
       <div className="container">
-        <h1><i className="fa fa-home"></i> Home</h1>
+        <h1><i className="fa fa-home" /> Home</h1>
         <Link to="contact">Contact</Link>
         {this.props.children}
       </div>
