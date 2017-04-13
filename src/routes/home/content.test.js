@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Home from './container'
+import Home from './content'
 
 describe('routes/home/container.js', () => {
   it('should render', () => {

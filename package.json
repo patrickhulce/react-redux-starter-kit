@@ -19,6 +19,7 @@
   "author": "Patrick Hulce <patrick.hulce@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "loading-page": "^1.0.1",
     "lodash": "^4.17.2",

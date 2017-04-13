@@ -1,4 +1,4 @@
-import MainLayout from 'src/layouts/main'
+import MainLayout from 'src/containers/layout'
 
 import homeRoute from './home'
 import contactRoute from './contact'
