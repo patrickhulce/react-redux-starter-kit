@@ -4,17 +4,18 @@ import thunk from 'redux-thunk'
 import {browserHistory, hashHistory} from 'react-router'
 import {syncHistoryWithStore} from 'react-router-redux'
 
-import createRootReducer from './reducers'
+import createRootReducer, {requireReducers} from './reducers'
 
 export default function createStoreAndHistory(initialState = {}) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  const reducers = requireReducers()
   const store = createStore(
-    createRootReducer(),
+    createRootReducer(reducers),
     initialState,
     composeEnhancers(applyMiddleware(thunk))
   )
 
-  store.reducers = {}
+  store.reducers = reducers
 
   if (__DEV__) {
     const debouncedSave = debounce(() => {
