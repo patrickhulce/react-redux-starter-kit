@@ -3,6 +3,8 @@ import {Link} from 'react-router'
 
 import MenuItem from 'material-ui/MenuItem'
 
+import dynamicStyles from './menu-link.less'
+
 export default React.createClass({
   propTypes: {
     text: PropTypes.string.isRequired,
@@ -14,7 +16,7 @@ export default React.createClass({
     const {text, path, icon, onTouchTap} = this.props
     const props = {
       primaryText: text,
-      containerElement: <Link to={path} />,
+      containerElement: <Link to={path} activeClassName={dynamicStyles.active} />,
     }
 
     if (icon) {
