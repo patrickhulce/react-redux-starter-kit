@@ -7,7 +7,10 @@ const classNames = classNamesModule.bind(dynamicStyles)
 export default React.createClass({
   propTypes: {
     open: PropTypes.bool.isRequired,
-    children: PropTypes.element,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.element),
+      PropTypes.element,
+    ]),
   },
   render() {
     if (!this.props.open) {

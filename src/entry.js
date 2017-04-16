@@ -4,12 +4,10 @@ import './styles/app.less'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import App from './containers/app'
 import createStoreAndHistory from './state/store'
 
-injectTapEventPlugin()
 document.body.classList.add('loaded')
 const reactRoot = document.getElementById('react-root')
 const {store, history} = createStoreAndHistory(window.__INITIAL_STATE__)
