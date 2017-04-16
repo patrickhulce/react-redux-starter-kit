@@ -1,11 +1,9 @@
 import React, {PropTypes} from 'react'
 
-import AppBar from 'material-ui/AppBar'
-import Drawer from 'material-ui/Drawer'
-import Menu from 'material-ui/Menu'
-
 import classNamesModule from 'classnames/bind'
 
+import AppBar from './app-bar'
+import Drawer from './drawer'
 import MenuLink from './menu-link'
 import dynamicStyles from './layout.less'
 
@@ -37,7 +35,7 @@ export default React.createClass({
   },
 
   renderMenuLink(linkProps) {
-    return <MenuLink key={linkProps.path} onTouchTap={this.handleMenuLinkTap} {...linkProps} />
+    return <MenuLink key={linkProps.path} onClick={this.handleMenuLinkTap} {...linkProps} />
   },
   renderDrawer() {
     const classes = classNames('drawer')
@@ -49,9 +47,7 @@ export default React.createClass({
         open={this.props.isDrawerOpen}
         onRequestChange={this.handleDrawerRequestChange}
         containerClassName={classes}>
-        <Menu>
-          {links.map(this.renderMenuLink)}
-        </Menu>
+        {links.map(this.renderMenuLink)}
       </Drawer>
     )
   },
@@ -83,11 +79,13 @@ export default React.createClass({
   },
   render() {
     return (
-      <div className="app-container">
-        <AppBar title="React App" onLeftIconButtonTouchTap={this.handleAppBarToggle} zDepth={2} />
+      <div className="transparent-container">
+        <AppBar toggleIsDrawerOpen={this.props.toggleIsDrawerOpen} />
         {this.renderDrawer()}
-        {this.renderSidebar()}
-        {this.renderContent()}
+        <div className={classNames('app-container')}>
+          {this.renderSidebar()}
+          {this.renderContent()}
+        </div>
       </div>
     )
   },

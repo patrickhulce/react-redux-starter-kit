@@ -3,7 +3,6 @@ import React, {PropTypes} from 'react'
 
 import {Router} from 'react-router'
 import {Provider} from 'react-redux'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 export default React.createClass({
   propTypes: {
@@ -16,11 +15,10 @@ export default React.createClass({
 
     return (
       <Provider store={store}>
-        <MuiThemeProvider>
-          <div style={{height: '100%'}}>
-            <Router history={history} children={routes} />
-          </div>
-        </MuiThemeProvider>
+        <div style={{height: '100%'}}>
+          <div />
+          <Router history={history} children={routes} />
+        </div>
       </Provider>
     )
   },
