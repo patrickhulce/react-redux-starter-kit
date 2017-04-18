@@ -56,6 +56,8 @@ const overrides = {
       new NukecssPlugin({
         sourceMap: true,
         sources: [`file://${__dirname}/src/**.html`],
+        sourceWhitelist: [`${__dirname}/src`, /^src\//],
+        nukecssOptions: {strict: true},
       }),
       new FontminPlugin(),
       new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
