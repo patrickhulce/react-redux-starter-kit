@@ -47,9 +47,9 @@ const overrides = {
     devtool: 'source-map',
     plugins: plugins.concat([
       new webpack.DefinePlugin({
-        __DEV__: 'false',
-        __PROD__: 'true',
-        __HOT__: 'false',
+        '__DEV__': 'false',
+        '__PROD__': 'true',
+        '__HOT__': 'false',
         'process.env.NODE_ENV': JSON.stringify('production'), // for react minification
       }),
       new ExtractTextPlugin('app.css'),
@@ -69,34 +69,37 @@ const overrides = {
   },
 }
 
-module.exports = Object.assign({
-  entry: {
-    inline: './src/entry-inline.js',
-    app: './src/entry.js',
-    sw: './src/sw/entry.js',
-  },
-  output: {
-    path: `${__dirname}/dist`,
-    filename: '[name].js',
-    publicPath: process.env.WEBPACK_PUBLIC_PATH || '/',
-  },
-  resolve: {
-    modules: [__dirname, 'node_modules'],
-  },
-  module: {
-    rules: [
-      {test: /\.woff(2)?(\?v=.+)?$/, use: ['file-loader']},
-      {test: /\.ttf(\?v=.+)?$/, use: ['file-loader']},
-      {test: /\.svg(\?v=.+)?$/, use: ['file-loader']},
-      {test: /\.eot(\?v=.+)?$/, use: ['file-loader']},
+module.exports = Object.assign(
+  {
+    entry: {
+      inline: './src/entry-inline.js',
+      app: './src/entry.js',
+      sw: './src/sw/entry.js',
+    },
+    output: {
+      path: `${__dirname}/dist`,
+      filename: '[name].js',
+      publicPath: process.env.WEBPACK_PUBLIC_PATH || '/',
+    },
+    resolve: {
+      modules: [__dirname, 'node_modules'],
+    },
+    module: {
+      rules: [
+        {test: /\.woff(2)?(\?v=.+)?$/, use: ['file-loader']},
+        {test: /\.ttf(\?v=.+)?$/, use: ['file-loader']},
+        {test: /\.svg(\?v=.+)?$/, use: ['file-loader']},
+        {test: /\.eot(\?v=.+)?$/, use: ['file-loader']},
 
-      {test: /\.png$/, use: url('image/png')},
-      {test: /\.gif$/, use: url('image/gif')},
-      {test: /\.jp(e)?g$/, use: url('image/jpeg')},
+        {test: /\.png$/, use: url('image/png')},
+        {test: /\.gif$/, use: url('image/gif')},
+        {test: /\.jp(e)?g$/, use: url('image/jpeg')},
 
-      {test: /\.js$/, use: ['babel-loader'], include: `${__dirname}/src`},
-      {test: /\.less$/, use: lessLoader, include: __dirname},
-      {test: /\.css$/, use: cssLoader, include: __dirname},
-    ],
+        {test: /\.js$/, use: ['babel-loader'], include: `${__dirname}/src`},
+        {test: /\.less$/, use: lessLoader, include: __dirname},
+        {test: /\.css$/, use: cssLoader, include: __dirname},
+      ],
+    },
   },
-}, overrides[process.env.NODE_ENV || 'dev'])
+  overrides[process.env.NODE_ENV || 'dev']
+)
