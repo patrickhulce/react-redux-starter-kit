@@ -1,4 +1,4 @@
-import MainLayout from 'src/containers/layout'
+import {LayoutContainer} from 'src/containers/layout'
 
 import homeRoute from './home'
 import contactRoute from './contact'
@@ -8,7 +8,7 @@ export default function (store) {
     path: '/',
     indexRoute: homeRoute(store),
     getComponent(nextState, next) {
-      next(null, MainLayout)
+      next(null, LayoutContainer)
     },
     childRoutes: [
       contactRoute(store),

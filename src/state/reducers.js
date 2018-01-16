@@ -2,7 +2,7 @@ import omit from 'lodash/omit'
 import {combineReducers} from 'redux'
 import {routerReducer} from 'react-router-redux'
 
-const requireReducer = require.context('../containers/', true, /\.reducers\.js$/)
+import {path as layoutPath, reducer as layoutReducer} from '../containers/layout.reducers'
 
 export function addReducers(store, reducers) {
   Object.assign(store.reducers, reducers)
@@ -15,11 +15,9 @@ export function removeReducers(store, keys) {
 }
 
 export function requireReducers() {
-  return requireReducer.keys().reduce((reducers, file) => {
-    const reducerModule = requireReducer(file)
-    reducers[reducerModule.path] = reducerModule.default
-    return reducers
-  }, {})
+  return {
+    [layoutPath]: layoutReducer,
+  }
 }
 
 export default function createRootReducer(reducers) {

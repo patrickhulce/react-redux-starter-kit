@@ -4,12 +4,11 @@ import './sw/register'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
+import {App} from './containers/app'
 import {INITIAL_STATE, IS_DEV} from './env'
 
-// tslint:disable
-const App = require('./containers/app').default
+// tslint:disable-next-line
 const createStoreAndHistory = require('./state/store').default
-// tslint:enable
 
 document.body.classList.add('loaded')
 const reactRoot = document.getElementById('react-root')

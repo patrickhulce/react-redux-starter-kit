@@ -26,6 +26,14 @@
     prettier "^1.9.2"
     yargs "^7.0.2"
 
+"@types/history@^3":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@types/history/-/history-3.2.2.tgz#b6affa240cb10b5f841c6443d8a24d7f3fc8bb0c"
+
+"@types/lodash@^4.14.92":
+  version "4.14.92"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.92.tgz#6e3cb0b71a1e12180a47a42a744e856c3ae99a57"
+
 "@types/node@*", "@types/node@^9.3.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.3.0.tgz#3a129cda7c4e5df2409702626892cb4b96546dd5"
@@ -35,6 +43,20 @@
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.3.tgz#8accad7eabdab4cca3e1a56f5ccb57de2da0ff64"
   dependencies:
     "@types/node" "*"
+    "@types/react" "*"
+
+"@types/react-redux@^4.4.0":
+  version "4.4.47"
+  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-4.4.47.tgz#12af1677116e08d413fe2620d0a85560c8a0536e"
+  dependencies:
+    "@types/react" "*"
+    redux "^3.6.0"
+
+"@types/react-router@^3.0.0":
+  version "3.0.13"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-3.0.13.tgz#493c2f0794313a37e4698deed9b816b2ad239716"
+  dependencies:
+    "@types/history" "^3"
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.0.34":

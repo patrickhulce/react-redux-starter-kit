@@ -1,22 +1,22 @@
-import {combineReducers} from 'redux'
+import {AnyAction, combineReducers} from 'redux'
 
 const SET_DRAWER = 'UI:LAYOUT:SET_DRAWER'
 const TOGGLE_DRAWER = 'UI:LAYOUT:TOGGLE_DRAWER'
 const TOGGLE_SIDEBAR = 'UI:LAYOUT:TOGGLE_SIDEBAR'
 
-export function setDrawer(payload) {
+export function setDrawer(payload: boolean): AnyAction {
   return {type: SET_DRAWER, payload}
 }
 
-export function toggleDrawer() {
+export function toggleDrawer(): AnyAction {
   return {type: TOGGLE_DRAWER}
 }
 
-export function toggleSidebar() {
+export function toggleSidebar(): AnyAction {
   return {type: TOGGLE_SIDEBAR}
 }
 
-function isDrawerOpen(state = false, action) {
+function isDrawerOpen(state: boolean = false, action: AnyAction): boolean {
   if (action.type === TOGGLE_DRAWER) {
     return !state
   } else if (action.type === SET_DRAWER) {
@@ -26,7 +26,7 @@ function isDrawerOpen(state = false, action) {
   }
 }
 
-function isSidebarOpen(state = false, action) {
+function isSidebarOpen(state: boolean = false, action: AnyAction): boolean {
   if (action.type === TOGGLE_SIDEBAR) {
     return !state
   } else {
@@ -35,4 +35,4 @@ function isSidebarOpen(state = false, action) {
 }
 
 export const path = 'ui:layout'
-export default combineReducers({isDrawerOpen, isSidebarOpen})
+export const reducer = combineReducers({isDrawerOpen, isSidebarOpen})

@@ -11,3 +11,4 @@ dist/
 # temporary list of js conversion
 src/entry.js
 src/env.js
+src/containers/*.js

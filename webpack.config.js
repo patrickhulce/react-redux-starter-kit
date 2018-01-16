@@ -73,7 +73,7 @@ module.exports = Object.assign(
   {
     entry: {
       inline: './src/entry-inline.js',
-      app: './src/entry.js',
+      app: './src/entry.tsx',
       sw: './src/sw/entry.js',
     },
     output: {
