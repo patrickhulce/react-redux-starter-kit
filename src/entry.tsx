@@ -1,16 +1,18 @@
-/* eslint-disable import/no-unassigned-import */
+/* tslint:disable */
 import './sw/register'
 import './styles/app.less'
 
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
-import App from './containers/app'
-import createStoreAndHistory from './state/store'
+import {IS_DEV, INITIAL_STATE} from './env'
+
+const App = require('./containers/app').default
+const createStoreAndHistory = require('./state/store').default
 
 document.body.classList.add('loaded')
 const reactRoot = document.getElementById('react-root')
-const {store, history} = createStoreAndHistory(window.__INITIAL_STATE__)
+const {store, history} = createStoreAndHistory(INITIAL_STATE)
 
 function renderApp() {
   const routes = require('./routes').default(store)
@@ -22,7 +24,7 @@ function renderApp() {
 
 let render = renderApp
 
-if (__DEV__) {
+if (IS_DEV) {
   const RedBox = require('redbox-react').default
 
   render = () => {
@@ -33,10 +35,11 @@ if (__DEV__) {
     }
   }
 
-  if (module.hot) {
-    module.hot.accept('./routes', () => {
+  const hotModule: any = (module as any).hot
+  if (hotModule) {
+    hotModule.accept('./routes', () => {
       setImmediate(() => {
-        ReactDOM.unmountComponentAtNode(reactRoot)
+        ReactDOM.unmountComponentAtNode(reactRoot!)
         render()
       })
     })

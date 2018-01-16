@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 function register() {
-  if (__HOT__) {
+  if (window.__HOT__) {
     console.warn('ServiceWorker not supported by HMR, turn off hot reloading to enable')
-  } else if (__PROD__ || localStorage.getItem('__forcesw__')) {
+  } else if (window.__PROD__ || localStorage.getItem('__forcesw__')) {
     navigator.serviceWorker.register('sw.js').then(registration => {
       console.log('ServiceWorker registration successful with scope: ', registration.scope)
     }).catch(err => {

@@ -3,6 +3,7 @@ import {applyMiddleware, compose, createStore} from 'redux'
 import thunk from 'redux-thunk'
 import {browserHistory, hashHistory} from 'react-router'
 import {syncHistoryWithStore} from 'react-router-redux'
+import {IS_DEV} from '../env'
 
 import createRootReducer, {requireReducers} from './reducers'
 
@@ -17,7 +18,7 @@ export default function createStoreAndHistory(initialState = {}) {
 
   store.reducers = reducers
 
-  if (__DEV__) {
+  if (IS_DEV) {
     const debouncedSave = debounce(() => {
       localStorage.setItem('__state__', JSON.stringify(store.getState()))
     }, 500)
@@ -40,7 +41,7 @@ export default function createStoreAndHistory(initialState = {}) {
     }
   }
 
-  const history = __DEV__ ? hashHistory : browserHistory
+  const history = IS_DEV ? hashHistory : browserHistory
   const syncedHistory = syncHistoryWithStore(history, store)
 
   return {store, history: syncedHistory}

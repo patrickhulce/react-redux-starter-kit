@@ -6,3 +6,8 @@
 node_modules/
 coverage/
 dist/
+*.js.map
+
+# temporary list of js conversion
+src/entry.js
+src/env.js

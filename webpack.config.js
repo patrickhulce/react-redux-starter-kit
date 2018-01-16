@@ -37,9 +37,9 @@ const overrides = {
     devtool: 'cheap-module-eval-source-map',
     plugins: plugins.concat([
       new webpack.DefinePlugin({
-        __DEV__: 'true',
-        __PROD__: 'false',
-        __HOT__: JSON.stringify(__HOT__),
+        'window.__DEV__': 'true',
+        'window.__PROD__': 'false',
+        'window.__HOT__': JSON.stringify(__HOT__),
       }),
     ]),
   },
@@ -47,9 +47,9 @@ const overrides = {
     devtool: 'source-map',
     plugins: plugins.concat([
       new webpack.DefinePlugin({
-        '__DEV__': 'false',
-        '__PROD__': 'true',
-        '__HOT__': 'false',
+        'window.__DEV__': 'false',
+        'window.__PROD__': 'true',
+        'window.__HOT__': 'false',
         'process.env.NODE_ENV': JSON.stringify('production'), // for react minification
       }),
       new ExtractTextPlugin('app.css'),
@@ -82,6 +82,7 @@ module.exports = Object.assign(
       publicPath: process.env.WEBPACK_PUBLIC_PATH || '/',
     },
     resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.json'],
       modules: [__dirname, 'node_modules'],
     },
     module: {
@@ -95,6 +96,7 @@ module.exports = Object.assign(
         {test: /\.gif$/, use: url('image/gif')},
         {test: /\.jp(e)?g$/, use: url('image/jpeg')},
 
+        {test: /\.tsx?$/, use: ['awesome-typescript-loader'], include: `${__dirname}/src`},
         {test: /\.js$/, use: ['babel-loader'], include: `${__dirname}/src`},
         {test: /\.less$/, use: lessLoader, include: __dirname},
         {test: /\.css$/, use: cssLoader, include: __dirname},
