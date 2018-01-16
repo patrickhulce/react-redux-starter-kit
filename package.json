@@ -67,6 +67,18 @@
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.2.0"
   },
+  "config": {
+    "tslint": {
+      "rules": {
+        "whitespace": false,
+        "newline-per-chained-call": false,
+        "only-arrow-functions": false,
+        "no-import-side-effect": false,
+        "no-unsafe-any": false,
+        "no-any": false
+      }
+    }
+  },
   "jest": {
     "moduleDirectories": [
       "node_modules",
