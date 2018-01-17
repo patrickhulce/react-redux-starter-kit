@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 
 import classNamesModule from 'classnames/bind'
 
-import AppBar from './app-bar'
+import {AppBar} from './app-bar'
 import Drawer from './drawer'
 import MenuLink from './menu-link'
 import dynamicStyles from './layout.less'

@@ -17,12 +17,20 @@ function url(mimetype, limit = 10000) {
   ]
 }
 
-let cssLoader = ['style-loader', {loader: 'css-loader', options: {sourceMap: true}}]
+let cssLoader = [
+  'style-loader',
+  {
+    loader: 'typings-for-css-modules-loader',
+    options: {modules: true, namedExport: true, camelCase: true, sourceMap: true},
+  },
+]
+let externalCssLoader = ['style-loader', {loader: 'css-loader', options: {sourceMap: true}}]
 let lessLoader = cssLoader.concat({loader: 'less-loader', options: {sourceMap: true}})
 
 if (__PROD__) {
   cssLoader = ExtractTextPlugin.extract({fallback: 'style-loader', use: cssLoader[1]})
   lessLoader = ExtractTextPlugin.extract({fallback: 'style-loader', use: lessLoader.slice(1)})
+  externalCssLoader = ExtractTextPlugin.extract({fallback: 'style-loader', use: externalCssLoader[1]})
 }
 
 const plugins = [
@@ -98,8 +106,9 @@ module.exports = Object.assign(
 
         {test: /\.tsx?$/, use: ['awesome-typescript-loader'], include: `${__dirname}/src`},
         {test: /\.js$/, use: ['babel-loader'], include: `${__dirname}/src`},
-        {test: /\.less$/, use: lessLoader, include: __dirname},
-        {test: /\.css$/, use: cssLoader, include: __dirname},
+        {test: /\.less$/, use: lessLoader, include: `${__dirname}/src`},
+        {test: /\.css$/, use: cssLoader, include: `${__dirname}/src`},
+        {test: /\.css$/, use: externalCssLoader, include: `${__dirname}/node_modules`},
       ],
     },
   },

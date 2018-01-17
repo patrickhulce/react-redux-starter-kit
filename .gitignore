@@ -6,7 +6,9 @@
 node_modules/
 coverage/
 dist/
+*.d.ts
 *.js.map
+
 
 # temporary list of js conversion
 src/entry.js

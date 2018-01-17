@@ -1,26 +1,24 @@
-:local {
-  .menu-link--active {
-    color: #3e91ff;
+.menu-link--active {
+  color: #3e91ff;
+}
+
+.menu-link {
+  color: #585858;
+  display: block;
+  height: 40px;
+  font-size: 20px;
+  line-height: 40px;
+  padding: 0 10px;
+
+  cursor: pointer;
+
+  &:hover, &:focus {
+    background: #cfcfcf;
+    text-decoration: none;
   }
 
-  .menu-link {
-    color: #585858;
-    display: block;
-    height: 40px;
-    font-size: 20px;
-    line-height: 40px;
-    padding: 0 10px;
-
-    cursor: pointer;
-
-    &:hover, &:focus {
-      background: #cfcfcf;
-      text-decoration: none;
-    }
-
-    i {
-      margin-right: 20px;
-      font-size: 24px;
-    }
+  i {
+    margin-right: 20px;
+    font-size: 24px;
   }
 }
