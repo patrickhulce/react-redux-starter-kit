@@ -56,6 +56,13 @@
     "@types/react" "*"
     redux "^3.6.0"
 
+"@types/react-router-redux@^4.0.7":
+  version "4.0.51"
+  resolved "https://registry.yarnpkg.com/@types/react-router-redux/-/react-router-redux-4.0.51.tgz#047e8c206892790bc2462f30d8b346d5b4f24fa0"
+  dependencies:
+    "@types/history" "^3"
+    redux "^3.6.0"
+
 "@types/react-router@^3.0.0":
   version "3.0.13"
   resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-3.0.13.tgz#493c2f0794313a37e4698deed9b816b2ad239716"

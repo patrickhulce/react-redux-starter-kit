@@ -2,7 +2,7 @@ import content from './content'
 
 export default function () {
   return {
-    getComponent(nextState, next) {
+    getComponent(nextState: any, next: any) {
       next(null, {content})
     },
   }

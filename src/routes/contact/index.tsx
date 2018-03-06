@@ -1,10 +1,10 @@
-import {addReducers} from 'src/state/reducers'
+import {addReducers, IAugmentedStore} from '../../state/reducers'
 
-export default function (store) {
+export default function (store: IAugmentedStore<any>) {
   return {
     path: '/contact',
-    getComponents(nextState, next) {
-      require.ensure([], require => {
+    getComponents(nextState: any, next: any) {
+      (require as any).ensure([], (require: any) => {
         const contact = require('./reducers').default
         addReducers(store, {contact})
 

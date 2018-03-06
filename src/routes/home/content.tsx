@@ -1,10 +1,12 @@
-import React, {PropTypes} from 'react'
+import * as React from 'react'
 import {Link} from 'react-router'
+import {connect} from 'react-redux'
 
-export default React.createClass({
-  propTypes: {
-    children: PropTypes.element,
-  },
+export interface IHomeProps {
+  children: JSX.Element
+}
+
+export default class Home extends React.Component<IHomeProps> {
   render() {
     return (
       <div className="container">
@@ -13,5 +15,5 @@ export default React.createClass({
         {this.props.children}
       </div>
     )
-  },
-})
+  }
+}
