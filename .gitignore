@@ -14,3 +14,4 @@ dist/
 src/entry.js
 src/env.js
 src/containers/*.js
+src/components/*.js
