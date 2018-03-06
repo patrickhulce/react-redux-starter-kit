@@ -6,11 +6,12 @@ exports[`routes/home/container.js should render 1`] = `
       className="fa fa-home" />
      Home
   </h1>
-  <a
-    onClick={[Function]}
-    style={Object {}}>
+  <Link
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="contact">
     Contact
-  </a>
+  </Link>
   <div
     className="child" />
 </div>
